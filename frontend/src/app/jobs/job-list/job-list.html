@@ -1,0 +1,27 @@
+<h2>Available Jobs</h2>
+
+<div
+  class="card mb-3"
+  *ngFor="let job of jobs">
+
+  <div class="card-body">
+
+    <h4>{{job.title}}</h4>
+
+    <p>
+      <strong>Company:</strong>
+      {{job.company}}
+    </p>
+
+    <p>
+      <strong>Location:</strong>
+      {{job.location}}
+    </p>
+
+    <p>
+      {{job.description}}
+    </p>
+
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-body">
+
+    <h2>Register</h2>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Name"
+        [(ngModel)]="user.name">
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Email"
+        [(ngModel)]="user.email">
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        [(ngModel)]="user.password">
+    </div>
+
+    <div class="mb-3">
+      <select
+        class="form-select"
+        [(ngModel)]="user.role">
+
+        <option value="JOB_SEEKER">
+          Job Seeker
+        </option>
+
+        <option value="EMPLOYER">
+          Employer
+        </option>
+
+      </select>
+    </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="register()">
+
+      Register
+    </button>
+
+  </div>
+</div>

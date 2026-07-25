@@ -1,0 +1,36 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from '../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JobService {
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  getAllJobs() {
+
+    return this.http.get(
+      `${environment.apiUrl}/jobs`
+    );
+  }
+
+  createJob(job: any) {
+
+    return this.http.post(
+      `${environment.apiUrl}/jobs`,
+      job
+    );
+  }
+
+  getJobById(id: number) {
+
+    return this.http.get(
+      `${environment.apiUrl}/jobs/${id}`
+    );
+  }
+}
