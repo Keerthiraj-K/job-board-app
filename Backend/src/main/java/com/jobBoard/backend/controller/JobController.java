@@ -45,4 +45,11 @@ public class JobController {
 
         return "Job Deleted Successfully";
     }
+
+    @GetMapping("/employer/{employerId}")
+    public List<Job> getEmployerJobs(
+            @PathVariable Long employerId) {
+
+        return jobService.getJobsByEmployer(employerId);
+    }
 }

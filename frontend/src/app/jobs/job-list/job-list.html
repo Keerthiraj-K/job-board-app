@@ -6,7 +6,11 @@
 
   <div class="card-body">
 
-    <h4>{{job.title}}</h4>
+    <h4>
+  <a [routerLink]="['/jobs', job.id]">
+    {{job.title}}
+  </a>
+</h4>
 
     <p>
       <strong>Company:</strong>

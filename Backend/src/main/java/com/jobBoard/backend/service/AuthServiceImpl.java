@@ -1,6 +1,7 @@
 package com.jobBoard.backend.service;
 
 import com.jobBoard.backend.dto.LoginRequest;
+import com.jobBoard.backend.dto.LoginResponse;
 import com.jobBoard.backend.dto.RegisterRequest;
 import com.jobBoard.backend.entity.User;
 import com.jobBoard.backend.repository.UserRepository;
@@ -40,21 +41,30 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(LoginRequest request) {
+    public LoginResponse login(LoginRequest request) {
 
-        User user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(
+                        request.getEmail())
                 .orElseThrow(() ->
                         new RuntimeException("User not found"));
 
-        boolean matches = passwordEncoder.matches(
+        if (!passwordEncoder.matches(
                 request.getPassword(),
-                user.getPassword()
-        );
+                user.getPassword())) {
 
-        if (!matches) {
-            throw new RuntimeException("Invalid Password");
+            throw new RuntimeException(
+                    "Invalid Password");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        String token =
+                jwtUtil.generateToken(user.getEmail());
+
+        return new LoginResponse(
+                token,
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole()
+        );
     }
 }

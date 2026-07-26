@@ -2,12 +2,13 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { JobService } from '../../services/job';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './job-list.html'
+  imports: [CommonModule, RouterLink],
+  templateUrl: './job-list.html',
 })
 export class JobList implements OnInit {
 
@@ -15,7 +16,8 @@ export class JobList implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

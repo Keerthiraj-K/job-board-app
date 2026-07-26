@@ -1,26 +1,88 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="main-body">
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
   <div class="container">
 
-    <a class="navbar-brand" routerLink="/">
+    <a
+      class="navbar-brand fw-bold fs-4"
+      style="cursor:pointer"
+      (click)="goHome()">
       Jobly AI
     </a>
 
-    <div>
-      <a
-        class="btn btn-outline-light me-2"
-        routerLink="/login">
-        Login
-      </a>
+    <div class="d-flex align-items-center ms-auto gap-2">
 
-      <a
-        class="btn btn-primary"
-        routerLink="/register">
-        Register
-      </a>
+      <ng-container *ngIf="authService.isLoggedIn()">
+
+        <a
+          *ngIf="isEmployer"
+          class="btn nav-btn btn-dashboard"
+          routerLink="/employer-dashboard">
+          Dashboard
+        </a>
+
+        <a
+          *ngIf="isEmployer"
+          class="btn nav-btn btn-post"
+          routerLink="/create-job">
+          Post Job
+        </a>
+
+        <a
+          *ngIf="isJobSeeker"
+          class="btn nav-btn btn-applications"
+          routerLink="/my-applications">
+          My Applications
+        </a>
+
+      </ng-container>
+
+      <ng-container *ngIf="!authService.isLoggedIn()">
+
+        <a
+          class="btn btn-outline-light"
+          routerLink="/login">
+          Login
+        </a>
+
+        <a
+          class="btn btn-primary"
+          routerLink="/register">
+          Register
+        </a>
+
+      </ng-container>
+
+      <div
+        *ngIf="authService.isLoggedIn()"
+        class="position-relative">
+
+        <button
+          class="btn profile-btn"
+          (click)="showMenu = !showMenu">
+
+          {{ user?.name }}
+        </button>
+
+        <div
+          *ngIf="showMenu"
+          class="dropdown-custom">
+
+          <button
+            class="dropdown-item-custom"
+            (click)="logout()">
+
+            Logout
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 </nav>
+</div>
 
 <div class="container mt-4">
   <router-outlet></router-outlet>

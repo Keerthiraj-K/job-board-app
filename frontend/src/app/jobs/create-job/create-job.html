@@ -1,1 +1,50 @@
-<p>create-job works!</p>
+<div class="card">
+  <div class="card-body">
+
+    <h2>Create Job</h2>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Job Title"
+        [(ngModel)]="job.title">
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Company"
+        [(ngModel)]="job.company">
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Location"
+        [(ngModel)]="job.location">
+    </div>
+
+    <div class="mb-3">
+      <textarea
+        class="form-control"
+        rows="4"
+        placeholder="Description"
+        [(ngModel)]="job.description">
+      </textarea>
+    </div>
+
+    <div class="mb-3">
+      <input
+        class="form-control"
+        placeholder="Skills"
+        [(ngModel)]="job.skills">
+    </div>
+
+    <button
+      class="btn btn-success"
+      (click)="createJob()">
+      Post Job
+    </button>
+
+  </div>
+</div>

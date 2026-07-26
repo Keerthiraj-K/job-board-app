@@ -1,5 +1,7 @@
 package com.jobBoard.backend.controller;
 
+import com.jobBoard.backend.dto.ApplicantDto;
+import com.jobBoard.backend.dto.AppliedJobs;
 import com.jobBoard.backend.entity.Application;
 import com.jobBoard.backend.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +24,25 @@ public class ApplicationController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<Application> getApplicationsByUser(
+    public List<AppliedJobs> getApplicationsByUser(
             @PathVariable Long userId) {
 
         return applicationService.getApplicationsByUser(userId);
     }
 
     @GetMapping("/job/{jobId}")
-    public List<Application> getApplicationsByJob(
+    public List<ApplicantDto>
+    getApplicationsByJob(
             @PathVariable Long jobId) {
 
-        return applicationService.getApplicationsByJob(jobId);
+        return applicationService.getApplicantsByJob(jobId);
+    }
+
+    @GetMapping("/check")
+    public boolean hasApplied(
+            @RequestParam Long userId,
+            @RequestParam Long jobId) {
+
+        return applicationService.existsByUserIdAndJobId(userId, jobId);
     }
 }

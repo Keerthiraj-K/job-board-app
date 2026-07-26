@@ -53,4 +53,10 @@ public class JobServiceImpl implements JobService {
 
         jobRepository.delete(existingJob);
     }
+
+    @Override
+    public List<Job> getJobsByEmployer(Long employerId) {
+
+        return jobRepository.findByEmployerId(employerId);
+    }
 }

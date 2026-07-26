@@ -28,9 +28,23 @@ export class JobService {
   }
 
   getJobById(id: number) {
+  return this.http.get(
+    `${environment.apiUrl}/jobs/${id}`
+  );
+}
 
-    return this.http.get(
-      `${environment.apiUrl}/jobs/${id}`
-    );
-  }
+    getEmployerJobs(employerId: number) {
+
+  return this.http.get(
+    `${environment.apiUrl}/jobs/employer/${employerId}`
+  );
+}
+
+    deleteJob(id: number) {
+
+  return this.http.delete(
+    `${environment.apiUrl}/jobs/${id}`,
+    { responseType: 'text' }
+  );
+}
 }

@@ -1,0 +1,25 @@
+<h2>Employer Dashboard</h2>
+
+<div *ngIf="jobs.length === 0"
+     class="alert alert-info">
+
+  You haven't posted any jobs yet.
+</div>
+
+<div
+  class="card mb-3"
+  *ngFor="let job of jobs">
+
+  <div class="card-body">
+
+    <a [routerLink]="['/jobs', job.id]">
+    {{ job.title }}
+  </a>
+
+    <p>{{job.company}}</p>
+
+    <p>{{job.location}}</p>
+
+  </div>
+
+</div>

@@ -26,6 +26,30 @@ export class LoginComponent {
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+
+  if (localStorage.getItem('token')) {
+
+    const user = JSON.parse(
+      localStorage.getItem('user')!
+    );
+
+    if (user.role === 'EMPLOYER') {
+
+      this.router.navigate([
+        '/employer-dashboard'
+      ]);
+
+    } else {
+
+      this.router.navigate([
+        '/jobs'
+      ]);
+
+    }
+  }
+}
+
   login() {
 
     this.authService
@@ -38,7 +62,24 @@ export class LoginComponent {
     res.token
   );
 
-  this.router.navigate(['/jobs']);
+  localStorage.setItem(
+    'user',
+    JSON.stringify(res)
+  );
+
+  if (res.role === 'EMPLOYER') {
+
+    this.router.navigate([
+      '/employer-dashboard'
+    ]);
+
+  } else {
+
+    this.router.navigate([
+      '/jobs'
+    ]);
+
+  }
 },
 
         error: (err) => {

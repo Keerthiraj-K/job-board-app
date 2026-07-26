@@ -2,6 +2,7 @@ package com.jobBoard.backend.controller;
 
 import com.jobBoard.backend.dto.AuthResponse;
 import com.jobBoard.backend.dto.LoginRequest;
+import com.jobBoard.backend.dto.LoginResponse;
 import com.jobBoard.backend.dto.RegisterRequest;
 import com.jobBoard.backend.entity.User;
 import com.jobBoard.backend.service.AuthService;
@@ -23,11 +24,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(
+    public LoginResponse login(
             @RequestBody LoginRequest request) {
 
-        String token = authService.login(request);
-
-        return new AuthResponse(token);
+        return authService.login(request);
     }
 }
