@@ -18,7 +18,8 @@ public class CorsConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:4200"));
+                List.of("http://localhost:4200",
+                        "https://job-board-app-eight-zeta.vercel.app"));
 
         configuration.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
